@@ -34,7 +34,9 @@ class Todo {
     this.$content = document.createElement('span');
     this.$content.innerHTML = `${text} `;
     this.$content.addEventListener('click', () => {
-      console.log('clicked on content');
+      if (this.$content.id) this.$content.removeAttribute('id');
+      else this.$content.setAttribute('id', 'done');
+      // this.$container.setAttribute('id', 'done');
     });
 
     this.$btnDelete = document.createElement('button');
