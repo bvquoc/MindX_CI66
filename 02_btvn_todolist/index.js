@@ -1,3 +1,4 @@
+const todoContent = document.querySelector('#todo-content');
 const btnSubmit = document.getElementById('btn-submit');
 const todoElement = document.getElementById('todo-list');
 const btnDeleteAll = document.getElementById('delete-all');
@@ -15,7 +16,7 @@ const hanleOnSubmit = () => {
   }
 };
 
-document.querySelector('#todo-content').addEventListener('keypress', function (e) {
+todoContent.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') hanleOnSubmit();
 });
 btnSubmit.addEventListener('click', hanleOnSubmit);
