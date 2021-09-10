@@ -46,6 +46,6 @@ class Todo {
   }
 
   handleDelete = () => {
-    this.$container.parentNode.removeChild(this.$container);
+    this.$container.remove();
   };
 }
