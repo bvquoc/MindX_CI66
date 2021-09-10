@@ -4,7 +4,7 @@ const btnDeleteAll = document.getElementById('delete-all');
 
 const todoList = [];
 
-btnSubmit.addEventListener('click', () => {
+const hanleOnSubmit = () => {
   const inpTodo = document.getElementById('todo-content');
   const content = inpTodo.value;
   inpTodo.value = '';
@@ -13,7 +13,12 @@ btnSubmit.addEventListener('click', () => {
     todoList.push(newTodo);
     todoElement.appendChild(newTodo.$container);
   }
+};
+
+document.querySelector('#todo-content').addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') hanleOnSubmit();
 });
+btnSubmit.addEventListener('click', hanleOnSubmit);
 
 btnDeleteAll.addEventListener('click', () => {
   todoList.forEach((item) => {
@@ -32,7 +37,7 @@ class Todo {
     this.$container.setAttribute('class', 'todo-item');
 
     this.$content = document.createElement('span');
-    this.$content.innerHTML = `${text} `;
+    this.$content.innerHTML = text;
     this.$content.addEventListener('click', () => {
       if (this.$content.id) this.$content.removeAttribute('id');
       else this.$content.setAttribute('id', 'done');

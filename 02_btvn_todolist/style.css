@@ -1,0 +1,8 @@
+#done {
+  color: rgb(143, 143, 143);
+  /* font-style: italic; */
+  text-decoration: line-through;
+}
+span {
+  margin-right: 5px;
+}
