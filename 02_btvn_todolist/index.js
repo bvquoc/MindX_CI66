@@ -11,7 +11,6 @@ btnSubmit.addEventListener('click', () => {
   if (content !== '') {
     const newTodo = new Todo(content);
     todoList.push(newTodo);
-    // newTodo.appendChild(document.createTextNode(content));
     todoElement.appendChild(newTodo.$container);
   }
 });
