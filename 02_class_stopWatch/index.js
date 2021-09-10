@@ -6,10 +6,33 @@ function secondsToTime(seconds) {
   return `${m}:${s}`;
 }
 
-const btnAddMore = document.getElementById('addMore');
+const stopWatchList = [];
+const btnAddMore = document.getElementById('add-more');
 btnAddMore.addEventListener('click', () => {
   const newStopWatch = new StopWath();
+  stopWatchList.push(newStopWatch);
   myWatch.appendChild(newStopWatch.$container);
+});
+
+const btnStartAll = document.getElementById('start-all');
+btnStartAll.addEventListener('click', () => {
+  stopWatchList.forEach((item) => {
+    item.handleStart();
+  });
+});
+
+const btnPauseAll = document.getElementById('pause-all');
+btnPauseAll.addEventListener('click', () => {
+  stopWatchList.forEach((item) => {
+    item.handlePause();
+  });
+});
+
+const btnStopAll = document.getElementById('stop-all');
+btnStopAll.addEventListener('click', () => {
+  stopWatchList.forEach((item) => {
+    item.handleStop();
+  });
 });
 
 class StopWath {
@@ -20,6 +43,7 @@ class StopWath {
   $txtTime;
   $btnStart;
   $btnPause;
+  $btnStop;
 
   constructor() {
     this.$container = document.createElement('div');
@@ -35,9 +59,15 @@ class StopWath {
     this.$btnPause.innerHTML = 'Pause';
     this.$btnPause.addEventListener('click', this.handlePause);
 
+    this.$btnStop = document.createElement('button');
+    this.$btnStop.innerHTML = 'Stop';
+    this.$btnStop.className = 'btn-stop-item';
+    this.$btnStop.addEventListener('click', this.handleStop);
+
     this.$container.appendChild(this.$txtTime);
     this.$container.appendChild(this.$btnStart);
     this.$container.appendChild(this.$btnPause);
+    this.$container.appendChild(this.$btnStop);
   }
 
   handleStart = () => {
@@ -51,5 +81,12 @@ class StopWath {
   handlePause = () => {
     clearInterval(this.counterIntervalId);
     this.counterIntervalId = undefined;
+  };
+
+  handleStop = () => {
+    this.$txtTime.innerHTML = '00:00';
+    clearInterval(this.counterIntervalId);
+    this.counterIntervalId = undefined;
+    this.counter = 0;
   };
 }
