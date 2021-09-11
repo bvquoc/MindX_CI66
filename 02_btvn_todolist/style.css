@@ -69,9 +69,6 @@ button {
   flex-shrink: 0;
   border-radius: 4px;
 }
-span {
-  cursor: pointer;
-}
 
 .input-todo {
   width: 100%;
@@ -100,6 +97,7 @@ ul {
   padding-left: 0px;
 }
 li {
+  cursor: pointer;
   padding: 4px 4px;
   width: 100%;
   display: flex;
