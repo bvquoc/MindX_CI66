@@ -38,7 +38,7 @@ class Todo {
     const divTag = document.createElement('div');
 
     this.$icon = document.createElement('i');
-    this.$icon.setAttribute('class', 'far fa-check-circle');
+    this.$icon.setAttribute('class', 'far fa-circle');
 
     this.$content = document.createElement('span');
     this.$content.innerHTML = text;
@@ -50,17 +50,17 @@ class Todo {
     this.$container.setAttribute('class', 'todo-item');
 
     this.$container.addEventListener('click', () => {
-      if (this.$icon.id) {
+      if (this.$content.id) {
         this.$content.removeAttribute('id');
 
         this.$icon.removeAttribute('class');
         this.$icon.removeAttribute('id');
-        this.$icon.setAttribute('class', 'far fa-check-circle');
+        this.$icon.setAttribute('class', 'far fa-circle');
       } else {
         this.$content.setAttribute('id', 'done');
         this.$icon.removeAttribute('class');
-        this.$icon.setAttribute('class', 'fas fa-check-circle');
-        this.$icon.setAttribute('id', 'done');
+        this.$icon.setAttribute('class', 'far fa-check-circle');
+        // this.$icon.setAttribute('id', 'done');
       }
     });
 
