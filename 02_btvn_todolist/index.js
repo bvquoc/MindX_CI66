@@ -31,25 +31,44 @@ btnDeleteAll.addEventListener('click', () => {
 class Todo {
   $container;
   $content;
+  $icon;
   $btnDelete;
 
   constructor(text) {
-    this.$container = document.createElement('li');
-    this.$container.setAttribute('class', 'todo-item');
+    const divTag = document.createElement('div');
+
+    this.$icon = document.createElement('i');
+    this.$icon.setAttribute('class', 'far fa-check-circle');
 
     this.$content = document.createElement('span');
     this.$content.innerHTML = text;
 
+    divTag.appendChild(this.$icon);
+    divTag.appendChild(this.$content);
+
+    this.$container = document.createElement('li');
+    this.$container.setAttribute('class', 'todo-item');
+
     this.$container.addEventListener('click', () => {
-      if (this.$content.id) this.$content.removeAttribute('id');
-      else this.$content.setAttribute('id', 'done');
+      if (this.$icon.id) {
+        this.$content.removeAttribute('id');
+
+        this.$icon.removeAttribute('class');
+        this.$icon.removeAttribute('id');
+        this.$icon.setAttribute('class', 'far fa-check-circle');
+      } else {
+        this.$content.setAttribute('id', 'done');
+        this.$icon.removeAttribute('class');
+        this.$icon.setAttribute('class', 'fas fa-check-circle');
+        this.$icon.setAttribute('id', 'done');
+      }
     });
 
     this.$btnDelete = document.createElement('button');
     this.$btnDelete.innerHTML = 'Delete';
     this.$btnDelete.addEventListener('click', this.handleDelete);
 
-    this.$container.appendChild(this.$content);
+    this.$container.appendChild(divTag);
     this.$container.appendChild(this.$btnDelete);
   }
 
