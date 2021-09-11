@@ -42,7 +42,6 @@ class Todo {
     this.$content.addEventListener('click', () => {
       if (this.$content.id) this.$content.removeAttribute('id');
       else this.$content.setAttribute('id', 'done');
-      // this.$container.setAttribute('id', 'done');
     });
 
     this.$btnDelete = document.createElement('button');
