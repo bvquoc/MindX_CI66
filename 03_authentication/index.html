@@ -9,5 +9,23 @@
   <body>
     <div id="app"></div>
   </body>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script>
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: 'AIzaSyAvtWTTKpOSwgds7grhoQHD6-fNdNSpbc4',
+      authDomain: 'zw-chat-app.firebaseapp.com',
+      projectId: 'zw-chat-app',
+      storageBucket: 'zw-chat-app.appspot.com',
+      messagingSenderId: '133145116773',
+      appId: '1:133145116773:web:4cde711db5829958c3068c',
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
   <script src="./index.js" type="module"></script>
 </html>

@@ -30,10 +30,27 @@ class Login {
     this.$form.appendChild(this.$inputGroupEmail.$container);
     this.$form.appendChild(this.$inputGroupPassword.$container);
     this.$form.appendChild(this.$actions);
+    this.$form.addEventListener('submit', this.handleOnSubmit);
 
     this.$actions.appendChild(this.$btnLogin);
     this.$actions.appendChild(this.$btnGoToRegister);
   }
+
+  handleOnSubmit = (event) => {
+    event.preventDefault();
+    const email = this.$inputGroupEmail.getValue();
+    const password = this.$inputGroupPassword.getValue();
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => {
+        if (error.code === 'auth/user-not-found')
+          this.$inputGroupEmail.setErrorMessage('User not found!');
+        console.log('Error code:', error.code);
+        console.log('Error msg:', error.message);
+      });
+  };
 
   handleGoToRegister = () => {
     const registerScreen = new Register();

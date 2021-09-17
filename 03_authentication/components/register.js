@@ -62,16 +62,26 @@ class Register {
       this.$inputGroupConfirmPassword.setErrorMessage('Please confirm your password!');
       check = false;
     }
+    if (!check) return;
 
-    if (check) {
-      console.log(email);
-      console.log(displayName);
-      console.log(password);
-      this.$inputGroupEmail.reset();
-      this.$inputGroupDisplayName.reset();
-      this.$inputGroupPassword.reset();
-      this.$inputGroupConfirmPassword.reset();
-    }
+    this.$inputGroupEmail.reset();
+    this.$inputGroupDisplayName.reset();
+    this.$inputGroupPassword.reset();
+    this.$inputGroupConfirmPassword.reset();
+
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        const user = firebase.auth().currentUser;
+        user.updateProfile({ displayName });
+        firebase.auth().currentUser.sendEmailVerification();
+        alert('Completed! Email verification sent!');
+      })
+      .catch((error) => {
+        console.log('Error code:', error.code);
+        console.log('Error msg:', error.message);
+      });
   };
 
   handleGoToLogin = () => {
