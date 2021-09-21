@@ -1,0 +1,23 @@
+body {
+  margin: 0px;
+}
+.chat {
+  background-color: rgb(110, 110, 110);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+
+  &_list {
+    background-color: yellow;
+    width: 300px;
+  }
+  &_main {
+    background-color: blue;
+    width: calc(100% - 550px);
+  }
+  &_member {
+    background-color: red;
+    width: 250px;
+  }
+}

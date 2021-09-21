@@ -1,0 +1,31 @@
+body {
+  margin: 0px;
+}
+
+.chat {
+  background-color: #6e6e6e;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.chat_list {
+  background-color: yellow;
+  width: 300px;
+}
+
+.chat_main {
+  background-color: blue;
+  width: calc(100% - 550px);
+}
+
+.chat_member {
+  background-color: red;
+  width: 250px;
+}
+/*# sourceMappingURL=draft.css.map */
