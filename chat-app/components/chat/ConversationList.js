@@ -1,6 +1,10 @@
+import { ConversationItem } from './ConversationItem.js';
 import { CreateConversationForm } from './createConversationForm.js';
 
 class ConversationList {
+  onConversationItemClick;
+  conversationList = [];
+
   $container = document.createElement('div');
   $btnCreateConversation = document.createElement('button');
   $createConversationForm = new CreateConversationForm();
@@ -12,27 +16,42 @@ class ConversationList {
     this.$createConversationForm.setVisible(false);
     this.$btnCreateConversation.addEventListener('click', this.handleCreateConversation);
 
-    (async function getConversationList() {
-      db.collection('conversation')
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, ' => ', doc.data());
-            const tmp = document.createElement('div');
-            tmp.innerText = doc.data();
-            this.$conversationList.appendChild(tmp);
-          });
-        });
-    })();
-
     this.$container.appendChild(this.$btnCreateConversation);
     this.$container.appendChild(this.$createConversationForm.$container);
     this.$container.appendChild(this.$conversationList);
   }
 
+  setOnConversationItemClick = (listener) => {
+    this.onConversationItemClick = listener;
+  };
+
   handleCreateConversation = () => {
     this.$createConversationForm.setVisible(true);
+  };
+
+  handleConversationAdded = (id, name, users) => {
+    const item = new ConversationItem(id, name, users);
+    this.conversationList.push(item);
+    item.setOnclick(() => {
+      this.onConversationItemClick({
+        id,
+        name,
+        users,
+      });
+    });
+    this.$container.appendChild(item.$container);
+  };
+
+  handleConversationRemoved = (id) => {
+    console.log('deleted', id);
+    const deleteIdx = this.conversationList.findIndex((item) => item.id === id);
+    if (deleteIdx < 0) return;
+    this.conversationList[deleteIdx].delete();
+    this.conversationList.splice(deleteIdx, 1);
+  };
+
+  setActiveConversation = (conversation) => {
+    this.conversationList.forEach((item) => item.setHighlight(item.id === conversation.id));
   };
 }
 
