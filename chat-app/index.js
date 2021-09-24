@@ -9,14 +9,13 @@ function setScreen($container) {
 }
 
 firebase.auth().onAuthStateChanged(function (user) {
-  console.log(user);
   if (user) {
     // User is signed in.
     const displayName = user.displayName;
     const email = user.email;
     const emailVerified = user.emailVerified;
     const uid = user.uid;
-    console.log(displayName, email, uid, emailVerified);
+    console.log(displayName, email, uid);
 
     const chatScreen = new Chat();
     setScreen(chatScreen.$container);
