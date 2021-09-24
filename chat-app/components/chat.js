@@ -17,8 +17,7 @@ class Chat {
   }
 
   setActiveConversation = (conversation) => {
-    // if (this.activeConversation) this.activeConversation.$container.style.backgroundColor = '';
-    // this.activeConversation.$container.style.backgroundColor = 'blue';
+    if (this.activeConversation?.id === conversation.id) return;
     this.activeConversation = conversation;
     this.$titleBar.setName(conversation.name);
     this.$conversationList.setActiveConversation(conversation);
