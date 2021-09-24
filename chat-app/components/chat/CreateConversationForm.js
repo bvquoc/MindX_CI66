@@ -17,6 +17,7 @@ class CreateConversationForm {
     this.$modal.setOnConfirmClick(this.handleOnConfirm);
 
     this.$form.appendChild(this.$conversationNameInput.$container);
+    this.$form.addEventListener('submit', (e) => this.handleOnConfirm(e));
   }
 
   setVisible = (isVisible) => {
@@ -27,7 +28,8 @@ class CreateConversationForm {
     this.$conversationNameInput.reset();
     this.setVisible(false);
   };
-  handleOnConfirm = () => {
+  handleOnConfirm = (event) => {
+    event?.preventDefault();
     const conversationName = this.$conversationNameInput.getValue().trim();
     if (conversationName === '') return;
     this.$conversationNameInput.reset();
