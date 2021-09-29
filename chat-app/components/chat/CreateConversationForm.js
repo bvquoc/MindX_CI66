@@ -21,7 +21,8 @@ class CreateConversationForm {
   }
 
   setVisible = (isVisible) => {
-    this.$container.style.visibility = isVisible ? 'visible' : 'hidden';
+    // this.$container.style.visibility = isVisible ? 'visible' : 'hidden';
+    this.$container.hidden = !isVisible;
   };
 
   handleOnCancel = () => {
