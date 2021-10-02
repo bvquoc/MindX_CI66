@@ -1,5 +1,5 @@
 import { ConversationItem } from './ConversationItem.js';
-import { CreateConversationForm } from './createConversationForm.js';
+import { CreateConversationForm } from './CreateConversationForm.js';
 
 class ConversationList {
   onConversationItemClick;
